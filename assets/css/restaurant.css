@@ -1,0 +1,28 @@
+.center{
+    background-color: #ff9e80;
+    height: 100%;
+    border: 5px solid black;
+}
+#textarea1{
+    margin-top:280px;
+    font-size:25px;
+}
+#img1{
+    height: 500px;
+    width:1700px;
+    margin-left:12px;
+}
+
+.l1{
+    font-size:25px;
+    color:black;
+    box-shadow: 2px 2px 8px 10px purple;
+    text-align:center;
+}
+
+.center1{
+    background-color: #ffebee;
+}
+.table1{
+    width:700px;
+}
