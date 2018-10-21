@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friendly Reminder</title>
+    <link rel="icon" type="image/png" href="assets/images/friend.png">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <!-- FullCalendar stylesheet-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+</head>
+
+<body>
+    <!-- Landing page content -->
+    <div class='landingPage'>
+        <div class='container'>
+
+            <div class='row'>
+                <div class='col m10 offset-m1 s12 center-align titleContent'>
+                    <h1>Friendly Reminder</h1>
+                    <h4>Find time to hang out with friends</h4>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col m5 offset-m1 s12' id='accountDiv'>
+                    <h5>Create account</h5>
+                    <form>
+                        <div class="input-field col m6">
+                            <label>First Name</label>
+                            <br>
+                            <br>
+                            <input id="firstName" type="text" class="validate">
+                        </div>
+                        <div class="input-field col m6">
+                            <label>Last Name</label>
+                            <br>
+                            <br>
+                            <input id="lastName" type="text" class="validate">
+                        </div>
+                        <div class="input-field col m12">
+                            <label>Username</label>
+                            <br>
+                            <br>
+                            <input id="createUsername" type="text" class="validate">
+                        </div>
+                        <div class="input-field col m12">
+                            <label>Password</label>
+                            <br>
+                            <br>
+                            <input id="createPassword" type="password" class="validate">
+                        </div>
+                        <div class="input-field col m12">
+                            <input id="createAccount" type="submit" class="validate btn">
+                        </div>
+                    </form>
+                </div>
+                <div class='col m5 s12' id='logDiv'>
+                    <h5>Log in</h5>
+                    <form>
+                        <div class="input-field col m12">
+                            <label>Username</label>
+                            <br>
+                            <br>
+                            <input id="username" type="text" class="validate">
+                        </div>
+                        <div class="input-field col m12">
+                            <label>Password</label>
+                            <br>
+                            <br>
+                            <input id="password" type="password" class="validate">
+                        </div>
+                        <div class="input-field col m12">
+                            <input id="login" type="submit" class="validate btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End landing page content -->
+
+    <!-- Home page content -->
+    <div class='homePage'>
+        <div class='container'>
+
+            <div class='row'>
+                <div class='col m10 offset-m1 s12 center-align titleContent'>
+                    <h1>Friendly Reminder</h1>
+                    <h4>Find time to hang out with friends</h4>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class='col m10 offset-m1 s12'>
+                    <div class='row'>
+                        <button id="scheduleModal" class="btn scheduleModal">Add to your schedule</button>
+                        <button id="findFreeTime" class="btn">Find free time</button>
+                        <button id="showSchedule" class="btn">Show schedule</button>
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-trigger btn' data-target='dropdown1'>Check Group Schedule</a>
+
+                        <!-- Dropdown Structure  -->
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <!-- populated by userGroups -->
+                        </ul>
+                    </div>
+                    <form class='row'>
+                        <div class='col m4 s12'>
+                            <input id="groupToJoin" type="text">
+                        </div>    
+                        <div class='input-field col m6 s12'>
+                            <input id="joinGroup" type="submit" class="btn" value='Join Group'>
+                        </div>
+                    </form>
+                    <form class='row'>
+                        <div class='input-field col m4 s12'>
+                            <input id="newGroup" type="text">
+                        </div>
+                        <div class='col m6 s12'>
+                            <input id="createGroup" type="submit" class="btn" value='Create New Group'>
+                        </div>
+                    </form>               
+                </div>
+                <br>
+                <div id='scheduler'></div>
+            </div>
+
+            <div class='row'>
+                <div class='col m5 offset-m1 s6'>
+
+                    <div class="col m12 m1 center-align">
+                        <!-- <textarea id="textarea1" class="materialize-textarea"></textarea><br><br>
+                        <label class="l1">Search for movie</label>
+                        <br><br> -->
+                        <br>
+                        <a id="submitMovie" class="waves-effect waves-light btn"><i class="material-icons center">Current Movies</i></a>
+                        <br>
+                        <div class="poster"></div>
+                    </div>
+                </div>
+
+                <div class="col m5 s6 th">
+                    <!--this is where the restaurant will go-->
+                    <div class="row">
+                        <div class="col m12 center">
+                            <textarea id="textarea1" class="materialize-textarea"></textarea>
+                            <br>
+                            <br>
+                            <label class="l1" for="textarea1">Search your favorite style of food</label>
+                            <br>
+                            <br>
+                            <button id="submitRestaurant" class="btn waves-effect waves-light" type="submit" name="action">
+                                <i class="material-icons center">Choose a style!</i>
+                            </button>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col s9 center1">
+                            <div class="row">
+                                <div class="col s12">
+                                    <img id="img1" src="assets/images/p1.png">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 center1">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="displayRestaurant">
+
+                        <table id="w1">
+                            <thead class="th">
+                                <tr>
+                                    <th class="th">Name</th>
+                                    <th class="th">Address</th>
+                                    <th class="th">Rating</th>
+                                    <!-- <th>Aggregate_rating</th> -->
+                                    <!-- <th>Votes</th> -->
+                                    <th class="th">cuisines</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form>
+                <fieldset id="userStartField">
+                    <label for="userStartTime">Start Time</label>
+                    <input id="userStartTime" type="datetime-local" class="input-field">
+                </fieldset>
+                <fieldset id="userEndField">
+                    <label for="userEndTime">End Time</label>
+                    <input id="userEndTime" type="datetime-local" class="input-field">
+                </fieldset>
+                <fieldset id="userReasonField">
+                    <label for="userReason">Reason</label>
+                    <input id="userReason" placeholder="Work, class, sleep..." type="text" class="input-field">
+                </fieldset>
+                <input type="submit" class="btn addToSchedule" id="addToSchedule" value="Submit">
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- End home page content -->
+
+    <!-- Javascript & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script> 
+    <script src="assets/javascript/dynamic.js"></script>
+    <script src="assets/javascript/scheduler.js"></script>
+    <!-- <script src="assets/javascript/weather.js"></script> -->
+    <script src="assets/javascript/restaurant.js"></script>
+    <script src="assets/javascript/movie.js"></script>
+    <!-- FullCalendar JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+</body>
+
+</html>
