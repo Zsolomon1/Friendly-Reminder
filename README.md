@@ -5,3 +5,6 @@ Many of us have full schedules which makes balancing work and life quite difficu
 With Friendly Reminder, each user is able to input their schedule into a visual weekly scheduler. The user can then join a group with their friends. Once in a group, the user has the ability to see all of the overlapping free time of all members of the group.
 
 At this point, the user can select the available free times to see the local weather at those times. In addition, the user will be able to search either for a nearby restaurant, movie, or event. This allows users to see clearly when they are able to see friends and also have a suggestion for a fun activity to spend together. 
+
+
+link to web page: https://zsolomon1.github.io/Friendly-Reminder-master/
